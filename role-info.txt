@@ -1,0 +1,4 @@
+0 - none
+1 - sorter
+2 - warehouse mgr
+3 - admin

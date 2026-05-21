@@ -16,6 +16,7 @@ if ($password !== $password2) {
     echo json_encode(["error" => "Passwords do not match"]);
     exit;
 }
+
 $u_errors = validate_username($username);
 $p_errors = validate_password($password);
 
@@ -51,6 +52,7 @@ else {
     session_regenerate_id(true);
     $_SESSION["user_id"] = $user_id;
     $_SESSION["username"] = $username;
+    $_SESSION["user_role"] = 0;
 
     echo json_encode(["success" => true, "redirect" => "/home"]);
     exit;

@@ -38,10 +38,6 @@ async function Login() {
     const res = await req.json();
     if (res.success) 
         window.location.href = res.redirect;
-        
-    else {
-        console.log(res);
-    }
 }
 
 async function Register() {

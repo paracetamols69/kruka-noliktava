@@ -6,6 +6,8 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
-echo "Welcome" . $_SESSION["username"];
-
+if ($_SESSION["user_role"] == 3) {
+    header("Location: /admin");
+    exit;
+}
 ?>

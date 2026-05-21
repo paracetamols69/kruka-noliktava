@@ -10,7 +10,7 @@ $username = trim($data["username"]);
 $password = $data["password"];
 $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-$stmt = $conn->prepare("SELECT id, username, password_hash FROM users WHERE username = ?");
+$stmt = $conn->prepare("SELECT id, username, password_hash, role FROM users WHERE username = ?");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 
@@ -21,6 +21,7 @@ if ($user && password_verify($password, $user["password_hash"])) {
     session_regenerate_id(true);
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["username"] = $user["username"];
+    $_SESSION["user_role"] = $user["role"];
 
     echo json_encode(["success" => true, "redirect" => "/home"]);
     exit;
