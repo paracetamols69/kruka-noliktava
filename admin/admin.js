@@ -7,6 +7,19 @@ async function GetAllUsers() {
     return res;
 }
 
+async function DeleteUser(id) {
+    const req = await fetch("../api/delete_user.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: id })
+    });
+
+    const res = await req.json();
+    console.log(res);
+
+    UpdateTable();
+}
+
 function InsertUsersTableRow(id, username, role, created_at) {
     const row = document.createElement("tr");
 
@@ -17,7 +30,7 @@ function InsertUsersTableRow(id, username, role, created_at) {
     <td>${created_at}</td>
     <td>
         <button onclick="EditUser(${id})">Edit</button>
-        <button onclick="DeleteUser(${id}")>Delete</button>
+        <button onclick="DeleteUser(${id})">Delete</button>
     </td>
     `
 
@@ -25,6 +38,7 @@ function InsertUsersTableRow(id, username, role, created_at) {
 }
 
 async function UpdateTable() {
+    users_table_body.innerHTML = "";
     const users = await GetAllUsers();
 
     users.forEach(user => {
