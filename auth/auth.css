@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    height: 100dvh;
+
+    background-color: #202020;
+    color: #E0E0E0;
+    
+    font-family: Arial;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#auth-container {
+    border-radius: 12px;
+    width: 30vw;
+}
+
+#auth-select-container {
+    height: 5dvh;
+    border-radius: 12px 12px 0 0;
+    background-color: #252525;
+
+    display: flex;
+    flex-direction: row;
+
+    overflow: hidden;
+}
+
+#auth-select-container .selector {
+    background-color: #252525;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+#auth-select-container .selector.active {
+    background-color: #303030;
+    border-radius: 12px 12px 0 0;
+}
+
+.form-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #303030;
+    border-radius: 0 0 12px 12px;
+    padding-top: 16px;
+}
+
+.form-container.active {
+    display: flex;
+}
+
+.form-container button {
+    font-size: 1.3rem;
+    background-color: #3c56ff;
+    color: #FFF;
+    border-radius: 8px;
+    border: none;
+    padding: 4px 12px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.form-field {
+    width: 80%;
+    margin-bottom: 8px;
+}
+
+.form-field p {
+    margin-bottom: 4px;
+    margin-left: 2px;
+}
+
+.form-field input {
+    background-color: #353535;
+    color: #E0E0E0;
+
+    font-size: 1.5rem;
+    width: 100%;
+
+    outline: none;
+    border: 2px solid #404040;
+    border-radius: 8px;
+
+    padding: 6px 10px;
+    box-sizing: border-box;
+}
