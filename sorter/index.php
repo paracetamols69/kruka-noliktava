@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 1) {
+    header("Location: /auth");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +18,7 @@
 </head>
 
 <body>
-    <div id="sidebar">
-        <button onclick="ToggleUsersTable()">Users</button>
-    </div>
-
-    <div id="main-content">
-        <table border="1" class="active">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Created at</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-
-            <tbody id="users"></tbody>
-        </table>
-    </div>
+    <a href="/logout.php">Logout</a>
 </body>
+
 </html>

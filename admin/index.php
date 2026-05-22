@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
+    header("Location: /auth");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +18,7 @@
 </head>
 
 <body>
+    <a href="/logout.php">Logout</a>
     <div id="sidebar">
         <button onclick="ToggleUsersTable()">Users</button>
     </div>

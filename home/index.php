@@ -6,6 +6,16 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
+if ($_SESSION["user_role"] == 1) {
+    header("Location: /sorter");
+    exit;
+}
+
+if ($_SESSION["user_role"] == 2) {
+    header("Location: /worker");
+    exit;
+}
+
 if ($_SESSION["user_role"] == 3) {
     header("Location: /admin");
     exit;
