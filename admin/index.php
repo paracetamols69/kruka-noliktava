@@ -18,7 +18,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 </head>
 
 <body>
-    <a href="/logout.php">Logout</a>
+    <a href="../logout.php">Logout</a>
     <div id="sidebar">
         <button onclick="ToggleUsersTable()">Users</button>
     </div>
