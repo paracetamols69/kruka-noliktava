@@ -5,6 +5,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 2) {
     header("Location: /auth");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 2) {
 </head>
 
 <body>
-    <a href="/logout.php">Logout</a>
+    <a href="../logout.php">Logout</a>
 </body>
 
 </html>
