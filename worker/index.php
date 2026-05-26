@@ -18,7 +18,25 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 2) {
 </head>
 
 <body>
-    <a href="/logout.php">Logout</a>
+
+    <div id="sidebar">
+        <a href="/logout.php">Logout</a>
+        <button onclick="ToggleTable()">Products</button>
+    </div>
+
+    <div id="main-content">
+        <table border="1" class="active">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+
+            <tbody id="products"></tbody>
+        </table>
+    </div>
 </body>
 
 </html>
