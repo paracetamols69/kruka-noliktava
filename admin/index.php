@@ -18,25 +18,43 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 </head>
 
 <body>
-    <a href="/logout.php">Logout</a>
     <div id="sidebar">
-        <button onclick="ToggleUsersTable()">Users</button>
+        <div class="table-select-button" id="users-button" data-table-id="users-table-container" onclick="ToggleTable(this)">Users</div>
+        <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
+        <a href="/logout.php">Logout</a>
     </div>
 
     <div id="main-content">
-        <table border="1" class="active">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Created at</th>
-                    <th>Options</th>
-                </tr>
-            </thead>
+        <div id="users-table-container" class="table-container">
+            <table border="1" id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Created at</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
 
-            <tbody id="users"></tbody>
-        </table>
+                <tbody id="users"></tbody>
+            </table>
+        </div>
+
+        <div id="products-table-container" class="table-container">
+            <table border="1" class="active">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Stock</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+
+                <tbody id="products"></tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

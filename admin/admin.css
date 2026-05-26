@@ -21,20 +21,28 @@ body {
     padding-top: 64px;
 }
 
-#sidebar button {
+.table-select-button {
     font-size: 1.2rem;
-    background-color: #303030;
     color: #E0E0E0;
     border: none;
     border-radius: 6px;
-    padding: 4px 24px;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 4px 8px;
     cursor: pointer;
+    text-align: left;
 
     transition: background-color 0.2s;
 }
 
-#sidebar button:hover {
-    background-color: #404040;
+.table-select-button:hover {
+    background-color: #303030;
+}
+
+.table-select-button.active {
+    border-left: 4px solid #4076d3;
+    background-color: #303030;
+
 }
 
 #main-content {
@@ -52,4 +60,12 @@ th, td {
 
 table {
     border-collapse: collapse;
+}
+
+.table-container {
+    display: none;
+}
+
+.table-container.active {
+    display: block;
 }
