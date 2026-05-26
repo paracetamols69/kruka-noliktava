@@ -13,6 +13,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../main.css">
     <script src="admin.js" defer></script>
     <title>Admin panel</title>
 </head>
@@ -54,6 +55,16 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 
                 <tbody id="products"></tbody>
             </table>
+
+            <button onclick="ToggleNewProductForm()">New</button>
+        </div>
+    </div>
+
+    <div id="overlay-container">
+        <div id="new-product-form" class="overlay">
+            <input type="text" placeholder="Product name" />
+            <input type="number" placeholder="Count" />
+            <button>Add</button>
         </div>
     </div>
 </body>

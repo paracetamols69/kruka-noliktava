@@ -4,6 +4,9 @@ const users_button = document.getElementById("users-button");
 const users_table_body = document.querySelector("tbody#users");
 const products_table_body = document.querySelector("tbody#products");
 
+const overlay_container = document.getElementById("overlay-container");
+const new_product_form = document.getElementById("new-product-form");
+
 async function GetAllUsers() {
     const req = await fetch("../api/get_all_users.php");
     const res = await req.json();
@@ -52,7 +55,7 @@ function InsertUsersTableRow(id, username, role, created_at) {
     <td>${id}</td>
     <td>${username}</td>
     <td>${role}</td>
-    <td>${created_at}</td>
+    <td>${new Date(created_at * 1000).toLocaleString()}</td>
     <td>
         <button onclick="EditUser(${id})">Edit</button>
         <button onclick="DeleteUser(${id})">Delete</button>
@@ -121,4 +124,14 @@ async function ToggleTable(buttonObject) {
             break;
     }
 }
+
+function ToggleNewProductForm() {
+    overlay_container.classList.toggle("active");
+    new_product_form.classList.toggle("active");
+}
+
+function AddNewProduct() {
+    
+}
+
 
