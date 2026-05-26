@@ -26,7 +26,7 @@
                 <input id="password-input" type="password" />
             </div>
 
-            <button onclick="Login()">Login</button>
+            <button id="login-button" onclick="Login()">Login</button>
         </div>
 
         <div id="register-container" class="form-container">
@@ -45,7 +45,7 @@
                 <input id="password-confirm-input" type="password">
             </div>
 
-            <button onclick="Register()">Register</button>
+            <button id="register-button" onclick="Register()">Register</button>
         </div>
     </div>
 </body>
