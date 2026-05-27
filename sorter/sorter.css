@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    height: 100dvh;
+    background-color: #202020;
+
+    display: flex;
+    font-family: Arial;
+    color: #E0E0E0;
+}
+
+#sidebar {
+    background-color: #252525;
+    height: 100%;
+    width: 15vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    padding-top: 64px;
+}
+
+#sidebar button {
+    font-size: 1.2rem;
+    background-color: #303030;
+    color: #E0E0E0;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 24px;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+#sidebar button:hover {
+    background-color: #404040;
+}
+
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: center;
+    
+}
+
+table {
+    border-collapse: collapse;
+}

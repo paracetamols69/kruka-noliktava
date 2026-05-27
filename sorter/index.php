@@ -18,7 +18,25 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 1) {
 </head>
 
 <body>
-    <a href="/logout.php">Logout</a>
+
+    <div id="sidebar">
+        <a href="/logout.php">Logout</a>
+        <button onclick="ToggleTable()">Shelves</button>
+    </div>
+
+    <div id="main-content">
+        <table border="1" class="active">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product ID</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+
+            <tbody id="shelves"></tbody>
+        </table>
+    </div>
 </body>
 
 </html>
