@@ -27,6 +27,13 @@ if (!isset($data['user_id']) || !isset($data['role'])) {
 
 $userIdToEdit = intval($data['user_id']);
 $newRole = intval($data['role']);
+$currentAdminId = intval($_SESSION["user_id"]);
+
+if ($userIdToEdit === $currentAdminId) {
+    http_response_code(400);
+    echo json_encode(["error" => "You cant change your own role!"]);
+    exit;
+}
 
 
 $stmt = $conn->prepare("UPDATE users SET role = ? WHERE id = ?");

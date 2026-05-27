@@ -22,6 +22,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
 </head>
 
 <body>
+    <input type="hidden" id="current-admin-id" value="<?php echo $_SESSION['user_id']; ?>">
     <div id="toast-container">
         
     </div>
