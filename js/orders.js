@@ -1,6 +1,6 @@
 const orders_table_body = document.querySelector("tbody#orders");
-
 const new_order_form = document.getElementById("new-order-form");
+const orderSelector = document.getElementById("new-order-product-select");
 
 async function GetAllOrders() {
     const req = await fetch("../api/get_all_orders.php");
@@ -37,8 +37,6 @@ async function UpdateOrdersTable() {
     });
 }
 
-UpdateOrdersTable();
-
 async function ToggleNewOrderForm() {
     overlay_container.classList.toggle("active");
     new_order_form.classList.toggle("active");
@@ -49,18 +47,32 @@ async function ToggleNewOrderForm() {
     if (new_order_form.classList.contains("active")) {
         const req = await fetch("../api/get_all_products.php");
         const products = await req.json();
-
-        const selectElement = document.getElementById("new-order-product-select");
         
-        selectElement.innerHTML = '<option value="">Izvēlies produktu</option>';
+        orderSelector.innerHTML = '<option value="">Izvēlies produktu</option>';
 
         products.forEach(product => {
             const option = document.createElement("option");
             option.value = product.id;
             option.textContent = product.product_name;
             
-            selectElement.append(option);
+            orderSelector.append(option);
         });
     }
 }
 
+async function AddNewOrder() {
+    const product_id = orderSelector.value;
+    const count = document.getElementById("new-order-count").value;
+
+    const req = await fetch("../api/add_order.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product_id: product_id, count: count })
+    });
+
+    const res = await req.json();
+
+    ToggleNewOrderForm();
+    UpdateOrdersTable();
+}
+UpdateOrdersTable();
