@@ -3,7 +3,7 @@ const new_shelf_form = document.getElementById("new-shelf-form");
 const shelfSelector = document.getElementById("new-order-shelf-select");
 
 async function DeleteShelf(id) {
-    const req = await fetch("../api/delete_shelf.php", {
+    const req = await fetch("../api/shelves/delete_shelf.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ shelf_id: id })
@@ -19,7 +19,7 @@ async function DeleteShelf(id) {
 
 
 async function GetAllShelves() {
-    const req = await fetch("../api/get_all_shelves.php");
+    const req = await fetch("../api/shelves/get_all_shelves.php");
     const res = await req.json();
 
     if (res.error) {
@@ -57,7 +57,7 @@ async function ToggleNewShelfForm() {
     overlay_container.classList.toggle("active");
     new_shelf_form.classList.toggle("active");
 
-    const req = await fetch("../api/get_all_products.php");
+    const req = await fetch("../api/shelves/get_all_products.php");
     const res = await req.json();
 
     if (res.error) {
@@ -87,7 +87,7 @@ async function AddNewShelf() {
     const shelf_id = document.getElementById("new-shelf-id").value;
     const product_id = document.getElementById("new-product-id").value;
 
-    const req = await fetch("../api/add_shelf.php", {
+    const req = await fetch("../api/shelves/add_shelf.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ shelf_id: shelf_id, product_id: product_id })

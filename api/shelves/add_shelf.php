@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 session_start();
 
-require "../includes/db.php";
+require "../../includes/db.php";
 
 if (!isset($_SESSION["user_id"])) {
     http_response_code(403);
@@ -16,11 +16,13 @@ if ($_SESSION["user_role"] != 3 && $_SESSION["user_role"] != 1) {
     exit;
 }
 
-
 $data = json_decode(file_get_contents("php://input"), true);
 
-$stmt = $conn->prepare("DELETE FROM shelves WHERE id = ?");
-$stmt->bind_param("i", $data["shelf_id"]);
+$shelf_id = $data["shelf_id"];
+$product_id = $data["product_id"];
+
+$stmt = $conn->prepare("INSERT INTO shelves (id, product_id) VALUES (?, ?)");
+$stmt->bind_param("ii", $shelf_id, $product_id);
 $stmt->execute();
 
-echo json_encode(["success" => "Shelf deleted"]);
+echo json_encode(["success" => "vajadzetu but ok"]);

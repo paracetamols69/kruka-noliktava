@@ -32,7 +32,6 @@ async function ToggleTable(buttonObject) {
             break;
 
         case "products-table-container":
-            console.log("nig");
             await UpdateProductsTable();
             break;
 

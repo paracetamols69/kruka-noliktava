@@ -107,6 +107,17 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
 
 
         <div id="overlay-container">
+            <div id="edit-user-form" class="overlay">
+                <span class="close-btn" onclick="ToggleEditUserForm()">&times;</span>
+                <input type="hidden" id="edit-user-id" />
+                <select class="selectBox" id="edit-user-role" required>
+                    <option value="1">Sorter</option>
+                    <option value="2">Worker</option>
+                    <option value="3">Admin</option>
+                </select>
+                <button onclick="SaveUserRole()">Saglabāt</button>
+            </div>
+
             <div id="new-product-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewProductForm()">&times;</span>
                 <input id="new-product-name" type="text" placeholder="Product name" />
@@ -117,7 +128,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
             <div id="new-order-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewOrderForm()">&times;</span>
 
-                <select id="new-order-product-select" required>
+                <select class="selectBox" id="new-order-product-select" required>
                     <option value="">Izvēlies produktu</option>
                 </select>
 

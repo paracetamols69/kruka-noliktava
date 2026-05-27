@@ -1,7 +1,8 @@
 <?php
 header("Content-Type: application/json");
+
 session_start();
-require "../includes/db.php";
+require "../../includes/db.php";
 
 if (!isset($_SESSION["user_id"])) {
     http_response_code(403);
@@ -15,12 +16,10 @@ if ($_SESSION["user_role"] != 3 && $_SESSION["user_role"] != 2) {
     exit;
 }
 
-$data = json_decode(file_get_contents("php://input"), true);
-
-$order_id = $data["order_id"];
-
-$stmt = $conn->prepare("DELETE FROM orders WHERE id = ?");
-$stmt->bind_param("i", $order_id);
+$stmt = $conn->prepare("SELECT id, product_name, stock FROM products");
 $stmt->execute();
 
-echo json_encode(["success" => "all g"]);
+$result = $stmt->get_result();
+$products = $result->fetch_all(MYSQLI_ASSOC);
+
+echo json_encode($products);

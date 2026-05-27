@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 session_start();
-require "../includes/db.php";
+require "../../includes/db.php";
 
 if (!isset($_SESSION["user_id"])) {
     http_response_code(403);

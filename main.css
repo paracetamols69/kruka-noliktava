@@ -182,7 +182,7 @@ table {
 }
 
 
-#new-order-product-select {
+.selectBox {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 12px;
@@ -209,12 +209,12 @@ table {
     transition: border-color 0.2s;
 }
 
-#new-order-product-select:focus {
+.selectBox:focus {
     border-color: #5c6bc0;
     box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.2);
 }
 
-#new-order-product-select option {
+.selectBox option {
     background-color: #1a1a1a;
     color: #ffffff;
     padding: 10px;

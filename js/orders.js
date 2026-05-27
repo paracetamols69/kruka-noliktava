@@ -3,7 +3,7 @@ const new_order_form = document.getElementById("new-order-form");
 const orderSelector = document.getElementById("new-order-product-select");
 
 async function DeleteOrder(id) {
-    const req = await fetch("../api/delete_order.php", {
+    const req = await fetch("../api/orders/delete_order.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ order_id: id })
@@ -19,7 +19,7 @@ async function DeleteOrder(id) {
 }
 
 async function GetAllOrders() {
-    const req = await fetch("../api/get_all_orders.php");
+    const req = await fetch("../api/orders/get_all_orders.php");
     const res = await req.json();
 
     if (res.error) {
@@ -60,11 +60,11 @@ async function ToggleNewOrderForm() {
     overlay_container.classList.toggle("active");
     new_order_form.classList.toggle("active");
 
-    const req = await fetch("../api/get_all_products.php");
+    const req = await fetch("../api/products/get_all_products.php");
 
 
     if (new_order_form.classList.contains("active")) {
-        const req = await fetch("../api/get_all_products.php");
+        const req = await fetch("../api/products/get_all_products.php");
         const products = await req.json();
         
         orderSelector.innerHTML = '<option value="">Izvēlies produktu</option>';
@@ -83,7 +83,7 @@ async function AddNewOrder() {
     const product_id = orderSelector.value;
     const count = document.getElementById("new-order-count").value;
 
-    const req = await fetch("../api/add_order.php", {
+    const req = await fetch("../api/orders/add_order.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product_id: product_id, count: count })

@@ -4,7 +4,7 @@ const overlay_container = document.getElementById("overlay-container");
 const new_product_form = document.getElementById("new-product-form");
 
 async function GetAllProducts() {
-    const req = await fetch("../api/get_all_products.php");
+    const req = await fetch("../api/products/get_all_products.php");
     const res = await req.json();
 
     if (res.error) {
@@ -15,7 +15,7 @@ async function GetAllProducts() {
 }
 
 async function DeleteProduct(id) {
-    const req = await fetch("../api/delete_product.php", {
+    const req = await fetch("../api/products/delete_product.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product_id: id })
@@ -63,7 +63,7 @@ async function AddNewProduct() {
     const productName = document.getElementById("new-product-name").value;
     const productCount = document.getElementById("new-product-count").value;
 
-    const req = await fetch("../api/add_product.php", {
+    const req = await fetch("../api/products/add_product.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product_name: productName, count: productCount })
