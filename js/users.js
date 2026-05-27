@@ -3,7 +3,9 @@ const users_table_body = document.querySelector("tbody#users");
 async function GetAllUsers() {
     const req = await fetch("../api/get_all_users.php");
     const res = await req.json();
-
+    if (res.error) {
+        DisplayError(res.error);
+    }
     return res;
 }
 
@@ -15,7 +17,9 @@ async function DeleteUser(id) {
     });
 
     const res = await req.json();
-    console.log(res);
+    if (res.error) {
+        DisplayError(res.error);
+    }
 
     UpdateUsersTable();
 }

@@ -16,16 +16,21 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
     <script src="../js/users.js" defer></script>
     <script src="../js/products.js" defer></script>
     <script src="../js/orders.js" defer></script>
+    <script src="../js/shelves.js" defer></script>
     <script src="admin.js" defer></script>
     <title>Admin panel</title>
 </head>
 
 <body>
+    <div id="toast-container">
+        
+    </div>
     <div id="sidebar">
         <h2><i>Admin panel</i></h2>
         <div class="table-select-button" id="users-button" data-table-id="users-table-container" onclick="ToggleTable(this)">Users</div>
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
         <div class="table-select-button" id="orders-button" data-table-id="orders-table-container" onclick="ToggleTable(this)">Orders</div> 
+        <div class="table-select-button" id="shelves-button" data-table-id="shelves-table-container" onclick="ToggleTable(this)">Shelves</div> 
         <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
@@ -83,6 +88,23 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
             <button id="new-product-btn" onclick="ToggleNewOrderForm()">New</button>
         </div>
 
+        <div id="shelves-table-container" class="table-container">
+            <table border="1" class="active">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product ID</th>
+                        <th>Stock</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+
+                <tbody id="shelves"></tbody>
+            </table>
+
+            <button id="new-product-btn" onclick="ToggleNewShelfForm()">New</button>
+        </div>
+
 
         <div id="overlay-container">
             <div id="new-product-form" class="overlay">
@@ -101,6 +123,14 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
 
                 <input id="new-order-count" type="number" placeholder="Count" />
                 <button onclick="AddNewOrder()">Add</button>
+            </div>
+
+            <div id="new-shelf-form" class="overlay">
+                <span class="close-btn" onclick="ToggleNewShelfForm()">&times;</span>
+
+                <input id="new-shelf-id" type="number" placeholder="Shelf ID" />
+                <input id="new-product-id" type="number" placeholder="Product ID" />
+                <button onclick="AddNewShelf()">Add</button>
             </div>
         </div>
 

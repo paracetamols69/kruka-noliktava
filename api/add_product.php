@@ -22,12 +22,20 @@ $count = $data["count"];
 
 $stmt = $conn->prepare("INSERT INTO products (product_name, stock) VALUES (?, ?)");
 $stmt->bind_param("si", $product_name, $count);
-$stmt->execute();
 
-if ($conn->errno === 1062) {
-    http_response_code(409); // 409 - conflict
-    echo json_encode(["error" => "Database conflict: entry with same product name already exists"]);
-    exit;
+try {
+    $stmt->execute();
+    echo json_encode(["success" => "all good nemiz"]);
+} catch (mysqli_sql_exception $e) {
+    if ($e->getCode() === 1062) {
+        http_response_code(409);
+        echo json_encode(["error" => "Database conflict: entry with same product name already exists"]);
+        exit;
+    } else {
+        http_response_code(400);
+        echo json_encode(["error" => "Unknown database error"]);
+        exit;
+    }
 }
 
 echo json_encode(["success" => "all good nemiz"]);

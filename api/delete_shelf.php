@@ -20,7 +20,7 @@ if ($_SESSION["user_role"] != 3 && $_SESSION["user_role"] != 1) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 $stmt = $conn->prepare("DELETE FROM shelves WHERE id = ?");
-$stmt->bind_param("i", $data["shelve_id"]);
+$stmt->bind_param("i", $data["shelf_id"]);
 $stmt->execute();
 
-echo json_encode(["success" => "Shelve deleted"]);
+echo json_encode(["success" => "Shelf deleted"]);

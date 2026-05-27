@@ -2,11 +2,30 @@ const orders_table_body = document.querySelector("tbody#orders");
 const new_order_form = document.getElementById("new-order-form");
 const orderSelector = document.getElementById("new-order-product-select");
 
+async function DeleteOrder(id) {
+    const req = await fetch("../api/delete_order.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order_id: id })
+    });
+
+    const res = await req.json();
+    
+    if (res.error) {
+        DisplayError(res.error);
+    }
+    
+    UpdateOrdersTable();
+}
+
 async function GetAllOrders() {
     const req = await fetch("../api/get_all_orders.php");
     const res = await req.json();
 
-    console.log(res);
+    if (res.error) {
+        DisplayError(res.error);
+    }
+
     return res;
 }
 
@@ -42,7 +61,7 @@ async function ToggleNewOrderForm() {
     new_order_form.classList.toggle("active");
 
     const req = await fetch("../api/get_all_products.php");
-    const res = await req.json();
+
 
     if (new_order_form.classList.contains("active")) {
         const req = await fetch("../api/get_all_products.php");
@@ -72,7 +91,12 @@ async function AddNewOrder() {
 
     const res = await req.json();
 
+    if (res.error) {
+        DisplayError(res.error);
+    }
+
     ToggleNewOrderForm();
     UpdateOrdersTable();
 }
+
 UpdateOrdersTable();

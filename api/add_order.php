@@ -51,7 +51,5 @@ $stmt4 = $conn->prepare("INSERT INTO orders (product_id, count, created_at) VALU
 $stmt4->bind_param("iii", $product_id, $count, $created_at);
 $stmt4->execute();
 
-
-
 echo json_encode(["success" => "vajadzetu but ok"]);
 

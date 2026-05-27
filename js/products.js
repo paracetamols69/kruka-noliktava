@@ -7,7 +7,10 @@ async function GetAllProducts() {
     const req = await fetch("../api/get_all_products.php");
     const res = await req.json();
 
-    console.log(res);
+    if (res.error) {
+        DisplayError(res.error);
+    }
+
     return res;
 }
 
@@ -19,7 +22,9 @@ async function DeleteProduct(id) {
     });
 
     const res = await req.json();
-    console.log(res);
+    if (res.error) {
+        DisplayError(res.error);
+    }
     
     UpdateProductsTable();
 }
@@ -65,7 +70,9 @@ async function AddNewProduct() {
     });
 
     const res = await req.json();
-    console.log(res);
+    if (res.error) {
+        DisplayError(res.error);
+    }
 
     ToggleNewProductForm();
     UpdateProductsTable();
