@@ -31,7 +31,7 @@ function InsertUsersTableRow(id, username, role, created_at) {
     <td>${id}</td>
     <td>${username}</td>
     <td>${role}</td>
-    <td>${new Date(created_at * 1000).toLocaleString()}</td>
+    <td>${created_at}</td>
     <td>
         <button onclick="EditUser(${id})">Edit</button>
         <button onclick="DeleteUser(${id})">Delete</button>

@@ -45,10 +45,10 @@ $stmt3 = $conn->prepare("UPDATE shelves SET stock = stock - ? WHERE id = ?");
 $stmt3->bind_param("ii", $count, $shelf_id);
 $stmt3->execute();
 
-$created_at = time();
+$created_at = (new DateTime('now', new DateTimeZone('Europe/Riga')))->format('Y-m-d H:i:s');
 
 $stmt4 = $conn->prepare("INSERT INTO orders (product_id, count, created_at) VALUES (?, ?, ?)");
-$stmt4->bind_param("iii", $product_id, $count, $created_at);
+$stmt4->bind_param("iis", $product_id, $count, $created_at);
 $stmt4->execute();
 
 echo json_encode(["success" => "vajadzetu but ok"]);

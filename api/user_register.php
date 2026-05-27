@@ -10,7 +10,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $username = trim($data["username"]);
 $password = $data["password"];
 $password2 = $data["password2"];
-$created_at = time();
+$created_at = (new DateTime('now', new DateTimeZone('Europe/Riga')))->format('Y-m-d H:i:s');
 
 if ($password !== $password2) {
     echo json_encode(["error" => "Passwords do not match"]);
@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 }
 else {
     $stmt = $conn->prepare("INSERT INTO users (username, password_hash, created_at) VALUES (?, ?, ?)");
-    $stmt->bind_param("ssi", $username, $password_hash, $created_at);
+    $stmt->bind_param("sss", $username, $password_hash, $created_at);
     $stmt->execute();
 
     $user_id = $conn->insert_id;
