@@ -7,6 +7,7 @@ const products_table_body = document.querySelector("tbody#products");
 const overlay_container = document.getElementById("overlay-container");
 const new_product_form = document.getElementById("new-product-form");
 
+const new_product_button = document.getElementById("new-product-btn");
 async function GetAllUsers() {
     const req = await fetch("../api/get_all_users.php");
     const res = await req.json();
@@ -32,7 +33,7 @@ async function DeleteUser(id) {
     const res = await req.json();
     console.log(res);
 
-    UpdateTable();
+    UpdateUsersTable();
 }
 
 async function DeleteProduct(id) {
@@ -45,7 +46,7 @@ async function DeleteProduct(id) {
     const res = await req.json();
     console.log(res);
 
-    UpdateTable();
+    UpdateProductsTable();
 }
 
 function InsertUsersTableRow(id, username, role, created_at) {
@@ -73,8 +74,8 @@ function InsertProductsTableRow(id, product_name, stock) {
     <td>${product_name}</td>
     <td>${stock}</td>
     <td>
-        <button onclick="EditUser(${id})">Edit</button>
-        <button onclick="DeleteUser(${id})">Delete</button>
+        <button onclick="EditProduct(${id})">Edit</button>
+        <button onclick="DeleteProduct(${id})">Delete</button>
     </td>
     `
 
@@ -130,8 +131,21 @@ function ToggleNewProductForm() {
     new_product_form.classList.toggle("active");
 }
 
-function AddNewProduct() {
-    
+async function AddNewProduct() {
+    const productName = document.getElementById("new-product-name").value;
+    const productCount = document.getElementById("new-product-count").value;
+
+    const req = await fetch("../api/add_product.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product_name: productName, count: productCount })
+    });
+
+    const res = await req.json();
+    console.log(res);
+
+    ToggleNewProductForm();
+    UpdateProductsTable();
 }
 
 

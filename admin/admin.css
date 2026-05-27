@@ -64,8 +64,10 @@ table {
 
 .table-container {
     display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 .table-container.active {
-    display: block;
+    display: flex;
 }
