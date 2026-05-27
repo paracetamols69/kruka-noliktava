@@ -86,12 +86,19 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 
         <div id="overlay-container">
             <div id="new-product-form" class="overlay">
+                <span class="close-btn" onclick="ToggleNewProductForm()">&times;</span>
                 <input id="new-product-name" type="text" placeholder="Product name" />
                 <input id="new-product-count" type="number" placeholder="Count" />
                 <button onclick="AddNewProduct()">Add</button>
             </div>
 
             <div id="new-order-form" class="overlay">
+                <span class="close-btn" onclick="ToggleNewOrderForm()">&times;</span>
+
+                <select id="new-order-product-select" required>
+                    <option value="">Izvēlies produktu</option>
+                </select>
+
                 <input id="new-order-count" type="number" placeholder="Count" />
                 <button onclick="AddNewOrder()">Add</button>
             </div>

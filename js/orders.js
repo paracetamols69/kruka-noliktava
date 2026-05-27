@@ -39,8 +39,28 @@ async function UpdateOrdersTable() {
 
 UpdateOrdersTable();
 
-function ToggleNewOrderForm() {
+async function ToggleNewOrderForm() {
     overlay_container.classList.toggle("active");
     new_order_form.classList.toggle("active");
-    console.log("nospiests")
+
+    const req = await fetch("../api/get_all_products.php");
+    const res = await req.json();
+
+    if (new_order_form.classList.contains("active")) {
+        const req = await fetch("../api/get_all_products.php");
+        const products = await req.json();
+
+        const selectElement = document.getElementById("new-order-product-select");
+        
+        selectElement.innerHTML = '<option value="">Izvēlies produktu</option>';
+
+        products.forEach(product => {
+            const option = document.createElement("option");
+            option.value = product.id;
+            option.textContent = product.product_name;
+            
+            selectElement.append(option);
+        });
+    }
 }
+
