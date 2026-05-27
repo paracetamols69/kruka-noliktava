@@ -1,5 +1,7 @@
 const orders_table_body = document.querySelector("tbody#orders");
 
+const new_order_form = document.getElementById("new-order-form");
+
 async function GetAllOrders() {
     const req = await fetch("../api/get_all_orders.php");
     const res = await req.json();
@@ -36,3 +38,9 @@ async function UpdateOrdersTable() {
 }
 
 UpdateOrdersTable();
+
+function ToggleNewOrderForm() {
+    overlay_container.classList.toggle("active");
+    new_order_form.classList.toggle("active");
+    console.log("nospiests")
+}

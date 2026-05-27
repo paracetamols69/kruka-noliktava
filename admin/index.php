@@ -22,6 +22,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 
 <body>
     <div id="sidebar">
+        <h2><i>Admin panel</i></h2>
         <div class="table-select-button" id="users-button" data-table-id="users-table-container" onclick="ToggleTable(this)">Users</div>
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
         <div class="table-select-button" id="orders-button" data-table-id="orders-table-container" onclick="ToggleTable(this)">Orders</div> 
@@ -61,6 +62,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 
             <button id="new-product-btn" onclick="ToggleNewProductForm()">New</button>
         </div>
+        
 
         <div id="orders-table-container" class="table-container">
             <table border="1" class="active">
@@ -80,14 +82,22 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 
             <button id="new-product-btn" onclick="ToggleNewOrderForm()">New</button>
         </div>
+
+
+        <div id="overlay-container">
+            <div id="new-product-form" class="overlay">
+                <input id="new-product-name" type="text" placeholder="Product name" />
+                <input id="new-product-count" type="number" placeholder="Count" />
+                <button onclick="AddNewProduct()">Add</button>
+            </div>
+
+            <div id="new-order-form" class="overlay">
+                <input id="new-order-count" type="number" placeholder="Count" />
+                <button onclick="AddNewOrder()">Add</button>
+            </div>
+        </div>
+
     </div>
 
-    <div id="overlay-container">
-        <div id="new-product-form" class="overlay">
-            <input id="new-product-name" type="text" placeholder="Product name" />
-            <input id="new-product-count" type="number" placeholder="Count" />
-            <button onclick="AddNewProduct()">Add</button>
-        </div>
-    </div>
 </body>
 </html>

@@ -20,6 +20,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 1) {
 <body>
 
     <div id="sidebar">
+        <h2><i>Sorter panel</i></h2>
         <button onclick="ToggleTable()">Shelves</button>
         <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
