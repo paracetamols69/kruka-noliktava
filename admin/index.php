@@ -12,7 +12,6 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="../main.css">
     <script src="admin.js" defer></script>
     <script src="../js/users.js" defer></script>
@@ -24,7 +23,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
     <div id="sidebar">
         <div class="table-select-button" id="users-button" data-table-id="users-table-container" onclick="ToggleTable(this)">Users</div>
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
-        <a href="/logout.php">Logout</a>
+        <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
     <div id="main-content">

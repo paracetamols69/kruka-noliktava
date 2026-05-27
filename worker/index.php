@@ -12,7 +12,6 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 2) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="worker.css"> -->
     <link rel="stylesheet" href="../main.css">
     <script src="../js/products.js" defer></script>
     <script src="worker.js" defer></script>
@@ -22,9 +21,9 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 2) {
 <body>
 
     <div id="sidebar">
-        <a href="/logout.php">Logout</a>
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div>
         <div class="table-select-button" id="orders-button" data-table-id="orders-table-container" onclick="ToggleTable(this)">Orders</div>
+        <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
     <div id="main-content">

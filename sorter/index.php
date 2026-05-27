@@ -12,7 +12,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="sorter.css">
+    <link rel="stylesheet" href="main.css">
     <script src="sorter.js" defer></script>
     <title>Sorter panel</title>
 </head>
@@ -20,8 +20,8 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 1) {
 <body>
 
     <div id="sidebar">
-        <a href="/logout.php">Logout</a>
         <button onclick="ToggleTable()">Shelves</button>
+        <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
     <div id="main-content">
