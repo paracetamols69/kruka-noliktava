@@ -119,12 +119,24 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                 <button onclick="SaveUserRole()">Saglabāt</button>
             </div>
 
+
+
             <div id="new-product-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewProductForm()">&times;</span>
                 <input id="new-product-name" type="text" placeholder="Product name" />
                 <input id="new-product-count" type="number" placeholder="Count" />
                 <button onclick="AddNewProduct()">Add</button>
             </div>
+
+            <div id="edit-product-form" class="overlay">
+                <span class="close-btn" onclick="ToggleEditProductForm()">&times;</span>
+                <input type="hidden" id="edit-product-id" />
+                <input id="edit-product-name" type="text" placeholder="Product name" />
+                <input id="edit-product-count" type="number" placeholder="Count" />
+                <button onclick="SaveProductData()">Saglabāt</button>
+            </div>
+
+
 
             <div id="new-order-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewOrderForm()">&times;</span>
@@ -136,6 +148,8 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                 <input id="new-order-count" type="number" placeholder="Count" />
                 <button onclick="AddNewOrder()">Add</button>
             </div>
+
+            
 
             <div id="new-shelf-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewShelfForm()">&times;</span>
