@@ -20,7 +20,7 @@ async function DeleteProduct(id) {
 
     const res = await req.json();
     console.log(res);
-
+    
     UpdateProductsTable();
 }
 

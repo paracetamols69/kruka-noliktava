@@ -13,9 +13,10 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../main.css">
-    <script src="admin.js" defer></script>
     <script src="../js/users.js" defer></script>
     <script src="../js/products.js" defer></script>
+    <script src="../js/orders.js" defer></script>
+    <script src="admin.js" defer></script>
     <title>Admin panel</title>
 </head>
 
@@ -23,6 +24,7 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
     <div id="sidebar">
         <div class="table-select-button" id="users-button" data-table-id="users-table-container" onclick="ToggleTable(this)">Users</div>
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
+        <div class="table-select-button" id="orders-button" data-table-id="orders-table-container" onclick="ToggleTable(this)">Orders</div> 
         <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
@@ -58,6 +60,25 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
             </table>
 
             <button id="new-product-btn" onclick="ToggleNewProductForm()">New</button>
+        </div>
+
+        <div id="orders-table-container" class="table-container">
+            <table border="1" class="active">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product ID</th>
+                        <th>Count</th>
+                        <th>Status</th>
+                        <th>Created at</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+
+                <tbody id="orders"></tbody>
+            </table>
+
+            <button id="new-product-btn" onclick="ToggleNewOrderForm()">New</button>
         </div>
     </div>
 
