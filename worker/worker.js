@@ -1,48 +1,25 @@
-const products_table_body = document.querySelector("tbody#products");
-
-async function GetAllProducts() {
-    const req = await fetch("../api/get_all_products.php");
-    const res = await req.json();
-
-    return res;
-}
-
-async function DeleteProduct(id) {
-    const req = await fetch("../api/delete_product.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product_id: id })
+async function ToggleTable(buttonObject) {
+    document.querySelectorAll(".table-select-button").forEach(button => {
+        button.classList.remove("active");
     });
-
-    const res = await req.json();
-    console.log(res);
-
-    UpdateTable();
-}
-
-function InsertProductsTableRow(id, name, stock) {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-    <td>${id}</td>
-    <td>${name}</td>
-    <td>${stock}</td>
-    <td>
-        <button onclick="EditProduct(${id})">Edit</button>
-        <button onclick="DeleteProduct(${id})">Delete</button>
-    </td>
-    `
-
-    products_table_body.append(row);
-}
-
-async function UpdateTable() {
-    products_table_body.innerHTML = "";
-    const products = await GetAllProducts();
     
-    products.forEach(product => {
-        InsertProductsTableRow(product.id, product.product_name, product.stock);
+    document.querySelectorAll(".table-container").forEach(container => {
+        container.classList.remove("active");
     });
+
+    const tableContainerId = buttonObject.dataset.tableId;
+    document.getElementById(tableContainerId).classList.add("active");
+
+    buttonObject.classList.add("active");
+    
+    switch (tableContainerId) {
+        case "orders-table-container":
+            // await UpdateOrdersTable();
+            break;
+        case "products-table-container":
+            await UpdateProductsTable();
+            break;
+    }
 }
 
-UpdateTable();
+UpdateProductsTable();

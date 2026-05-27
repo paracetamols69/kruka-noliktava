@@ -1,3 +1,50 @@
+body {
+    margin: 0;
+    height: 100dvh;
+    background-color: #202020;
+
+    display: flex;
+    font-family: Arial;
+    color: #E0E0E0;
+}
+
+#sidebar {
+    background-color: #252525;
+    height: 100%;
+    width: 15vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    padding-top: 64px;
+}
+
+.table-select-button {
+    font-size: 1.2rem;
+    color: #E0E0E0;
+    border: none;
+    border-radius: 6px;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    cursor: pointer;
+    text-align: left;
+
+    transition: background-color 0.2s;
+}
+
+.table-select-button:hover {
+    background-color: #303030;
+}
+
+.table-select-button.active {
+    border-left: 4px solid #4076d3;
+    background-color: #303030;
+
+}
+
 #overlay-container {
     position: fixed;
     width: 100%;
@@ -54,3 +101,37 @@
 .overlay.active {
     display: flex;
 }
+
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: center;
+    
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.table-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-container.active {
+    display: flex;
+}
+
+
+
+
+
+
+

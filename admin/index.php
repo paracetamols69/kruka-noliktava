@@ -15,6 +15,8 @@ if (!isset($_SESSION["user_id"]) && $_SESSION["user_role"] != 3) {
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="../main.css">
     <script src="admin.js" defer></script>
+    <script src="../js/users.js" defer></script>
+    <script src="../js/products.js" defer></script>
     <title>Admin panel</title>
 </head>
 
