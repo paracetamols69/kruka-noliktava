@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 header("Content-Type: application/json");
 session_start();
 require "../../includes/db.php";
+require "../../includes/check_session.php";
 
 if (!isset($_SESSION["user_id"])) {
     http_response_code(403);

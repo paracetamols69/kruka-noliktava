@@ -45,3 +45,14 @@ async function ToggleTable(buttonObject) {
             break;
     }
 }
+
+const { fetch: originalFetch } = window;
+    window.fetch = async (...args) => {
+        const response = await originalFetch(...args);
+        
+        if (response.status === 401) {
+            window.location.reload();
+        }
+        
+        return response;
+    };

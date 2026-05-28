@@ -2,6 +2,7 @@
 header("Content-Type: application/json");
 session_start();
 require "../../includes/db.php";
+require "../../includes/check_session.php";
 
 
 if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
