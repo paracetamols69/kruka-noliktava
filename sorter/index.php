@@ -20,7 +20,9 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 1) {
 </head>
 
 <body>
-
+    <div id="toast-container">
+        
+    </div>
     <div id="sidebar">
         <h2><i>Sorter panel</i></h2>
         <button id="shelves-button" class="table-select-button" onclick="ToggleTable(this)" data-table-id="shelves-table-container">Shelves</button>
