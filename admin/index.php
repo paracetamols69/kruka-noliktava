@@ -160,7 +160,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                     <option value="">Izvēlies produktu</option>
                 </select>
 
-                <input id="shelf-stock" type="number" placeholder="Count" />
+                <input id="shelf-stock" type="number" placeholder="Count" min="0"/>
 
                 <button onclick="AddNewShelf()">Add</button>
             </div>
@@ -173,7 +173,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                     <option value="">Izvēlies produktu</option>
                 </select>
                 
-                <input id="edit-shelf-stock" type="number" placeholder="Count" />
+                <input id="edit-shelf-stock" type="number" placeholder="Count" min="0"/>
                 
                 <button onclick="SaveShelfData()">Saglabāt</button>
             </div>

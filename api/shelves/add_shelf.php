@@ -22,6 +22,21 @@ $shelf_id = intval($data["shelf_id"]);
 $product_id = intval($data["product_id"]);
 $stock = intval($data["stock"]);
 
+if ($stock < 0) {
+    http_response_code(400);
+    echo json_encode(["error" => "Stock skaits nevar būt negatīvs!"]);
+    exit;
+}
+
+$shelfCheck = $conn->prepare("SELECT id FROM shelves WHERE id = ?");
+$shelfCheck->bind_param("i", $shelf_id);
+$shelfCheck->execute();
+if ($shelfCheck->get_result()->fetch_assoc()) {
+    http_response_code(409);
+    echo json_encode(["error" => "Plaukts ar ID $shelf_id jau eksistē!"]);
+    exit;
+}
+
 
 $checkStmt = $conn->prepare("SELECT stock FROM products WHERE id = ?");
 $checkStmt->bind_param("i", $product_id);
@@ -34,11 +49,13 @@ if (!$prodResult) {
     exit;
 }
 
+
 if ($prodResult['stock'] < $stock) {
     http_response_code(400);
     echo json_encode(["error" => "Noliktavā nav tik daudz preču! Pieejams: " . $prodResult['stock']]);
     exit;
 }
+
 
 $stmt = $conn->prepare("INSERT INTO shelves (id, product_id, stock) VALUES (?, ?, ?)");
 $stmt->bind_param("iii", $shelf_id, $product_id, $stock);

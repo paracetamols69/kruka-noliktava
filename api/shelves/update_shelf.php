@@ -28,6 +28,12 @@ $shelf_id = intval($data["shelf_id"]);
 $new_product_id = intval($data["product_id"]);
 $new_stock = intval($data["stock"]);
 
+if ($new_stock < 0) {
+    http_response_code(400);
+    echo json_encode(["error" => "Stock skaits nevar būt negatīvs!"]);
+    exit;
+}
+
 
 $oldShelfStmt = $conn->prepare("SELECT product_id, stock FROM shelves WHERE id = ?");
 $oldShelfStmt->bind_param("i", $shelf_id);
