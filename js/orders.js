@@ -152,7 +152,9 @@ async function ToggleEditOrderForm(id) {
 
 async function AddNewOrder() {
     const product_id = orderSelector.value;
+    console.log(product_id);
     const count = document.getElementById("new-order-count").value;
+    console.log(count);
 
     const req = await fetch("../api/orders/add_order.php", {
         method: "POST",
