@@ -39,8 +39,8 @@ function InsertShelvesTableRow(id, product_id, stock) {
     <td>${product_id}</td>
     <td>${stock}</td>
     <td>
-        <button onclick="ToggleEditShelfForm(${id}, ${product_id}, ${stock})">Edit</button>
-        <button onclick="DeleteShelf(${id})">Delete</button>
+        <button class="editBtn" onclick="ToggleEditShelfForm(${id}, ${product_id}, ${stock})">Edit</button>
+        <button class="deleteBtn" onclick="DeleteShelf(${id})">Delete</button>
     </td>
     `;
 

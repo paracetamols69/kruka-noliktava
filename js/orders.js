@@ -1,8 +1,6 @@
 const orders_table_body = document.querySelector("tbody#orders");
 const new_order_form = document.getElementById("new-order-form");
 const orderSelector = document.getElementById("new-order-product-select");
-const edit_order_form = document.getElementById("edit-order-form");
-const orderEditProductSelector = document.getElementById("edit-order-product-select");
 
 async function DeleteOrder(id) {
     const req = await fetch("../api/orders/delete_order.php", {
@@ -47,8 +45,8 @@ function InsertOrdersTableRow(id, product_id, count, status, created_at) {
     <td>${status}</td>
     <td>${created_at}</td>
     <td>
-        <button onclick="ToggleEditOrderForm(${id})">Edit</button>
-        <button onclick="DeleteOrder(${id})">Delete</button>
+        <button class="editBtn" onclick="EditOrder(${id})">Edit</button>
+        <button class="deleteBtn" onclick="DeleteOrder(${id})">Delete</button>
     </td>
     `
 
@@ -88,65 +86,7 @@ async function ToggleNewOrderForm() {
 }
 
 async function SaveOrderData() {
-    const order_id = document.getElementById("edit-order-id").value;
-    const product_id = document.getElementById("edit-order-product-select").value;
-    const status = document.getElementById("edit-order-status-select").value;
-    const count = document.getElementById("edit-order-count").value;
-
-    const req = await fetch("../api/orders/update_order.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({order_id: order_id, product_id: product_id, new_count: count, new_status: status})
-    });
-
-    const res = await req.json();
-
-    if (res.error) {
-        DisplayError(res.error);
-    }
-    else if (res.success) {
-        DisplaySuccess(res.success);
-    }
-
-    ToggleEditOrderForm(order_id);
-    UpdateOrdersTable();
-}
-
-async function ToggleEditOrderForm(id) {
-    overlay_container.classList.toggle("active");
-    edit_order_form.classList.toggle("active");
-
-    if (!overlay_container.classList.contains("active")) {
-        return;
-    }
-
-    document.getElementById("edit-order-id").value = id;
-    const req = await fetch("../../api/products/get_all_products.php");
-    const res = await req.json();
-
-    if (res.error) {
-        DisplayError(res.error);
-    }
-
-    if (edit_order_form.classList.contains("active")) {
-        const req = await fetch("../../api/products/get_all_products.php");
-        const products = await req.json();
-        
-        if (products.error) {
-            DisplayError(res.error);
-        }
-
-        orderEditProductSelector.innerHTML = '<option value="">Izvēlies produktu</option>';
-
-        products.forEach(product => {
-            console.log(product);
-            const option = document.createElement("option");
-            option.value = product.id;
-            option.textContent = product.product_name;
-
-            orderEditProductSelector.append(option);
-        });
-    }
+    const order_id = 0;
 }
 
 async function AddNewOrder() {

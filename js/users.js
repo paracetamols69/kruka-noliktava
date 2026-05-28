@@ -30,23 +30,6 @@ async function DeleteUser(id) {
     UpdateUsersTable();
 }
 
-function InsertUsersTableRow(id, username, role, created_at) {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-    <td>${id}</td>
-    <td>${username}</td>
-    <td>${role}</td>
-    <td>${created_at}</td>
-    <td>
-        <button onclick="ToggleEditUserForm(${id}, ${role})">Edit</button>
-        <button onclick="DeleteUser(${id})">Delete</button>
-    </td>
-    `
-
-    users_table_body.append(row);
-}
-
 async function UpdateUsersTable() {
     users_table_body.innerHTML = "";
     const users = await GetAllUsers();
@@ -70,8 +53,8 @@ function InsertUsersTableRow(id, username, role, created_at) {
     <td>${role}</td>
     <td>${created_at}</td>
     <td>
-        ${isSelf ? '' : `<button onclick="ToggleEditUserForm(${id}, ${role})">Edit</button>`}
-        <button onclick="DeleteUser(${id})">Delete</button>
+        ${isSelf ? '' : `<button class="editBtn" onclick="ToggleEditUserForm(${id}, ${role})">Edit</button>`}
+        <button class="deleteBtn" onclick="DeleteUser(${id})">Delete</button>
     </td>
     `;
 

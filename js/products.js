@@ -43,8 +43,8 @@ function InsertProductsTableRow(id, product_name, stock) {
     <td>${product_name}</td>
     <td>${stock}</td>
     <td>
-        <button onclick="ToggleEditProductForm(${id}, '${product_name}', ${stock})">Edit</button>
-        <button onclick="DeleteProduct(${id})">Delete</button>
+        <button class="editBtn" onclick="ToggleEditProductForm(${id}, '${product_name}', ${stock})">Edit</button>
+        <button class="deleteBtn" onclick="DeleteProduct(${id})">Delete</button>
     </td>
     `;
 
