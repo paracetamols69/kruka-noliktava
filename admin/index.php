@@ -149,6 +149,25 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                 <button onclick="AddNewOrder()">Add</button>
             </div>
 
+            <div id="edit-order-form" class="overlay">
+                <span class="close-btn" onclick="ToggleEditOrderForm()">&times;</span>
+
+                <input type="hidden" id="edit-order-id" />
+                <select class="selectBox" id="edit-order-product-select" required>
+                    <option value="">Izvēlies preci</option>
+                </select>
+
+                <select class="selectBox" id="edit-order-status-select" required>
+                    <option value="0">Reģistrēts</option>
+                    <option value="1">Apstrādāts</option>
+                    <option value="2">Nosūtīts</option>
+                    <option value="3">Saņemts</option>
+                </select>
+
+                <input id="edit-order-count" type="number" placeholder="Count" />
+                <button onclick="SaveOrderData()">Add</button>
+            </div>
+
             
 
             <div id="new-shelf-form" class="overlay">

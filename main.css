@@ -195,6 +195,7 @@ table {
     font-family: sans-serif;
     font-size: 14px;
     outline: none;
+    margin-bottom: 4px;
     
     -webkit-appearance: none;
     -moz-appearance: none;

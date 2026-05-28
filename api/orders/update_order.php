@@ -18,6 +18,7 @@ if ($_SESSION["user_role"] != 3 && $_SESSION["user_role"] != 2) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 $order_id = $data["order_id"];
+$product_id = $data["product_id"];
 $count = $data["new_count"];
 $status = $data["new_status"];
 
@@ -29,9 +30,11 @@ if ($status < 0 || $status > 3) {
     echo json_encode(["error" => "Invalid order status"]);
 }
 
-$stmt = $conn->prepare("UPDATE orders SET count = ?, status = ? WHERE order_id = ?");
-$stmt->bind_param("iii", $count, $status, $order_id);
+$stmt = $conn->prepare("UPDATE orders SET count = ?, status = ?, product_id = ? WHERE id = ?");
+$stmt->bind_param("iiii", $count, $status, $product_id, $order_id);
 $stmt->execute();
+
+echo json_encode(["success" => "Order modified"]);
 
 
 
