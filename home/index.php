@@ -25,3 +25,5 @@ if ($_SESSION["user_role"] == 3) {
 <h1>Tev vēl nav piešķirts role.</h1>
 
 <h3>Sazinies ar Kruku</h3>
+
+<img style="width: 300px; height: auto; border-radius: 50%;" src="/includes/kruks.png">
