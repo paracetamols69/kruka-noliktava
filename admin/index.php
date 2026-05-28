@@ -149,8 +149,6 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                 <button onclick="AddNewOrder()">Add</button>
             </div>
 
-            
-
             <div id="new-shelf-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewShelfForm()">&times;</span>
 

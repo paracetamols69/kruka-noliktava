@@ -241,6 +241,10 @@ table {
     animation: slideIn 0.3s ease, fadeOut 0.3s ease 4s forwards;
 }
 
+.toast.good {
+    background: #43c643;
+}
+
 @keyframes slideIn {
     from {
         transform: translateX(120%);

@@ -45,4 +45,6 @@ if ($stmt->execute()) {
     http_response_code(500);
     echo json_encode(["error" => "Database error failed to update role"]);
 }
+
+echo json_encode(["success" => "User updated"]);
 ?>

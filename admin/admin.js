@@ -12,6 +12,18 @@ async function DisplayError(msg) {
     toast.remove();
 }
 
+async function DisplaySuccess(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast good";
+    toast.innerHTML = msg;
+
+    toast_container.appendChild(toast);
+    
+    await new Promise(r => setTimeout(r, 5000));
+
+    toast.remove();
+}
+ 
 async function ToggleTable(buttonObject) {
     document.querySelectorAll(".table-select-button").forEach(button => {
         button.classList.remove("active");

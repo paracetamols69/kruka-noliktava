@@ -14,6 +14,9 @@ async function DeleteOrder(id) {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
     
     UpdateOrdersTable();
 }
@@ -24,6 +27,9 @@ async function GetAllOrders() {
 
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
 
     return res;
@@ -79,6 +85,11 @@ async function ToggleNewOrderForm() {
     }
 }
 
+async function SaveOrderData() {
+    const order_id = 0;
+    const 
+}
+
 async function AddNewOrder() {
     const product_id = orderSelector.value;
     const count = document.getElementById("new-order-count").value;
@@ -93,6 +104,9 @@ async function AddNewOrder() {
 
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
 
     ToggleNewOrderForm();

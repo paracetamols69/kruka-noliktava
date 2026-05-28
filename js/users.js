@@ -6,6 +6,9 @@ async function GetAllUsers() {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
     return res;
 }
 
@@ -19,6 +22,9 @@ async function DeleteUser(id) {
     const res = await req.json();
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
 
     UpdateUsersTable();

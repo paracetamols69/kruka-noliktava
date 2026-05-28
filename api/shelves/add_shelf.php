@@ -25,4 +25,4 @@ $stmt = $conn->prepare("INSERT INTO shelves (id, product_id) VALUES (?, ?)");
 $stmt->bind_param("ii", $shelf_id, $product_id);
 $stmt->execute();
 
-echo json_encode(["success" => "vajadzetu but ok"]);
+echo json_encode(["success" => "Shelf added"]);

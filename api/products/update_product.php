@@ -36,7 +36,7 @@ $stmt->bind_param("sii", $product_name, $count, $product_id);
 
 try {
     $stmt->execute();
-    echo json_encode(["success" => "all good nemiz"]);
+    echo json_encode(["success" => "Product updated"]);
 } catch (mysqli_sql_exception $e) {
     
     if ($e->getCode() === 1062) {

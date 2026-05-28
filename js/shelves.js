@@ -13,6 +13,9 @@ async function DeleteShelf(id) {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
     
     UpdateShelvesTable();
 }
@@ -24,6 +27,9 @@ async function GetAllShelves() {
 
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
     return res;
 }
@@ -63,6 +69,9 @@ async function ToggleNewShelfForm() {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
 
     if (new_shelf_form.classList.contains("active")) {
         const req = await fetch("../api/get_all_shelves.php");
@@ -97,6 +106,9 @@ async function AddNewShelf() {
 
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
     ToggleNewShelfForm();
     UpdateShelvesTable();

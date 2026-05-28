@@ -25,7 +25,7 @@ $stmt->bind_param("si", $product_name, $count);
 
 try {
     $stmt->execute();
-    echo json_encode(["success" => "all good nemiz"]);
+    echo json_encode(["success" => "Product added"]);
 } catch (mysqli_sql_exception $e) {
     if ($e->getCode() === 1062) {
         http_response_code(409);

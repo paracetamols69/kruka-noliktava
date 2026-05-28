@@ -10,6 +10,9 @@ async function GetAllProducts() {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
 
     return res;
 }
@@ -24,6 +27,9 @@ async function DeleteProduct(id) {
     const res = await req.json();
     if (res.error) {
         DisplayError(res.error);
+    }
+    else if (res.success) {
+        DisplaySuccess(res.success);
     }
     
     UpdateProductsTable();
@@ -73,6 +79,9 @@ async function AddNewProduct() {
     if (res.error) {
         DisplayError(res.error);
     }
+    else if (res.success) {
+        DisplaySuccess(res.success);
+    }
 
     ToggleNewProductForm();
     UpdateProductsTable();
@@ -108,6 +117,7 @@ async function SaveProductData() {
         if (typeof DisplayError === "function") DisplayError(res.error);
         else alert(res.error);
     } else {
+        DisplaySuccess(res.success);
         ToggleEditProductForm();
         UpdateProductsTable();
     }
