@@ -179,10 +179,24 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                     <option value="">Izvēlies produktu</option>
                 </select>
 
-                <input id="shelf-stock" type="number" placeholder="Count" />
+                <input id="shelf-stock" type="number" placeholder="Count" min="0"/>
 
                 <button onclick="AddNewShelf()">Add</button>
             </div>
+
+            <div id="edit-shelf-form" class="overlay">
+                <span class="close-btn" onclick="ToggleEditShelfForm()">&times;</span>
+                <input type="hidden" id="edit-shelf-id" />
+                
+                <select class="selectBox" id="edit-shelf-product-select" required>
+                    <option value="">Izvēlies produktu</option>
+                </select>
+                
+                <input id="edit-shelf-stock" type="number" placeholder="Count" min="0"/>
+                
+                <button onclick="SaveShelfData()">Saglabāt</button>
+            </div>
+
         </div>
 
     </div>
