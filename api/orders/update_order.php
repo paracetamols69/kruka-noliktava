@@ -24,10 +24,12 @@ $status = $data["new_status"];
 
 if ($count <= 0) {
     echo json_encode(["error" => "Cannot make empty or negative order"]);
+    exit;
 } 
 
 if ($status < 0 || $status > 3) {
     echo json_encode(["error" => "Invalid order status"]);
+    exit;
 }
 
 $stmt = $conn->prepare("UPDATE orders SET count = ?, status = ?, product_id = ? WHERE id = ?");
