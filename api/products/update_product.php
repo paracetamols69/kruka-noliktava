@@ -30,6 +30,11 @@ $product_id = intval($data["product_id"]);
 $product_name = $data["product_name"];
 $count = intval($data["count"]);
 
+if ($count < 0) {
+    http_response_code(400);
+    echo json_encode(["error" => "Produkta skaits nevar būt negatīvs!"]);
+    exit;
+}
 
 $stmt = $conn->prepare("UPDATE products SET product_name = ?, stock = ? WHERE id = ?");
 $stmt->bind_param("sii", $product_name, $count, $product_id);

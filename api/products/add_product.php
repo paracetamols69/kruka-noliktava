@@ -20,6 +20,12 @@ $data = json_decode(file_get_contents("php://input"), true);
 $product_name = $data["product_name"];
 $count = $data["count"];
 
+if ($count < 0) {
+    http_response_code(400);
+    echo json_encode(["error" => "Produkta skaits nevar būt negatīvs!"]);
+    exit;
+}
+
 $stmt = $conn->prepare("INSERT INTO products (product_name, stock) VALUES (?, ?)");
 $stmt->bind_param("si", $product_name, $count);
 
