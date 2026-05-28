@@ -23,4 +23,4 @@ $stmt = $conn->prepare("DELETE FROM orders WHERE id = ?");
 $stmt->bind_param("i", $order_id);
 $stmt->execute();
 
-echo json_encode(["success" => "all g"]);
+echo json_encode(["success" => "Order deleted"]);

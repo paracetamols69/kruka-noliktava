@@ -13,6 +13,7 @@ const loginPasswordInput = document.querySelector("#login-container #password-in
 const registerUsernameInput = document.querySelector("#register-container #username-input");
 const registerPasswordInput = document.querySelector("#register-container #password-input");
 const registerPasswordConfirmInput = document.querySelector("#register-container #password-confirm-input");
+const toast_container = document.getElementById("toast-container");
 
 
 function enterButtonCheck(event) {
@@ -60,6 +61,9 @@ async function Login() {
     });
 
     const res = await req.json();
+    if (res.error) {
+        DisplayError(res.error);
+    }
     if (res.success) {
         window.location.href = res.redirect;
     }
@@ -81,7 +85,34 @@ async function Register() {
     });
 
     const res = await req.json();
+    if (res.error) {
+        DisplayError(res.error);
+    }
     if (res.success) {
         window.location.href = res.redirect;
     }
+}
+
+async function DisplayError(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = msg;
+
+    toast_container.appendChild(toast);
+
+    await new Promise(r => setTimeout(r, 5000));
+
+    toast.remove();
+}
+
+async function DisplaySuccess(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast good";
+    toast.innerHTML = msg;
+
+    toast_container.appendChild(toast);
+    
+    await new Promise(r => setTimeout(r, 5000));
+
+    toast.remove();
 }

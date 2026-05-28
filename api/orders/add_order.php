@@ -33,7 +33,7 @@ $stmt1->close();
 
 if ($stock - $count < 0) {
     http_response_code(400);
-    echo json_encode(["error" => "not enough items in shelves"]);
+    echo json_encode(["error" => "Not enough items in shelves"]);
     exit;
 }
 
@@ -51,5 +51,5 @@ $stmt4 = $conn->prepare("INSERT INTO orders (product_id, count, created_at) VALU
 $stmt4->bind_param("iis", $product_id, $count, $created_at);
 $stmt4->execute();
 
-echo json_encode(["success" => "vajadzetu but ok"]);
+echo json_encode(["success" => "Order added"]);
 
