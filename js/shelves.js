@@ -85,7 +85,7 @@ async function ToggleNewShelfForm() {
 
 async function AddNewShelf() {
     const shelf_id = document.getElementById("new-shelf-id").value;
-    const product_id = document.getElementById("new-product-id").value;
+    const product_id = document.getElementById("shelf-product-select").value;
     const count = document.getElementById("shelf-stock").value;
 
     const req = await fetch("../api/shelves/add_shelf.php", {

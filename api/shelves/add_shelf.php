@@ -22,7 +22,7 @@ $shelf_id = $data["shelf_id"];
 $product_id = $data["product_id"];
 $stock = $data["stock"];
 
-$stmt = $conn->prepare("INSERT INTO shelves (id, product_id stock) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO shelves (id, product_id, stock) VALUES (?, ?, ?)");
 $stmt->bind_param("iii", $shelf_id, $product_id, $stock);
 $stmt->execute();
 

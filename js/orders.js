@@ -87,7 +87,6 @@ async function ToggleNewOrderForm() {
 
 async function SaveOrderData() {
     const order_id = 0;
-    const 
 }
 
 async function AddNewOrder() {
