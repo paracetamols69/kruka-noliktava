@@ -37,5 +37,3 @@ try {
         exit;
     }
 }
-
-echo json_encode(["success" => "all good nemiz"]);
