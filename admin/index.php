@@ -149,11 +149,19 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
                 <button onclick="AddNewOrder()">Add</button>
             </div>
 
+            
+
             <div id="new-shelf-form" class="overlay">
                 <span class="close-btn" onclick="ToggleNewShelfForm()">&times;</span>
 
                 <input id="new-shelf-id" type="number" placeholder="Shelf ID" />
-                <input id="new-product-id" type="number" placeholder="Product ID" />
+
+                <select class="selectBox" id="shelf-product-select" required>
+                    <option value="">Izvēlies produktu</option>
+                </select>
+
+                <input id="shelf-stock" type="number" placeholder="Count" />
+
                 <button onclick="AddNewShelf()">Add</button>
             </div>
         </div>

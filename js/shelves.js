@@ -1,6 +1,6 @@
 const shelves_table_body = document.querySelector("tbody#shelves");
 const new_shelf_form = document.getElementById("new-shelf-form");
-const shelfSelector = document.getElementById("new-order-shelf-select");
+const productSelector = document.getElementById("shelf-product-select");
 
 async function DeleteShelf(id) {
     const req = await fetch("../api/shelves/delete_shelf.php", {
@@ -13,9 +13,6 @@ async function DeleteShelf(id) {
     if (res.error) {
         DisplayError(res.error);
     }
-    else if (res.success) {
-        DisplaySuccess(res.success);
-    }
     
     UpdateShelvesTable();
 }
@@ -27,9 +24,6 @@ async function GetAllShelves() {
 
     if (res.error) {
         DisplayError(res.error);
-    }
-    else if (res.success) {
-        DisplaySuccess(res.success);
     }
     return res;
 }
@@ -63,31 +57,28 @@ async function ToggleNewShelfForm() {
     overlay_container.classList.toggle("active");
     new_shelf_form.classList.toggle("active");
 
-    const req = await fetch("../api/shelves/get_all_products.php");
+    const req = await fetch("../../api/products/get_all_products.php");
     const res = await req.json();
 
     if (res.error) {
         DisplayError(res.error);
     }
-    else if (res.success) {
-        DisplaySuccess(res.success);
-    }
 
     if (new_shelf_form.classList.contains("active")) {
-        const req = await fetch("../api/get_all_shelves.php");
-        const shelves = await req.json();
+        const req = await fetch("../../api/products/get_all_products.php");
+        const products = await req.json();
         
-        if (shelves.error) {
+        if (products.error) {
             DisplayError(res.error);
         }
-        shelfSelector.innerHTML = '<option value="">Izvēlies plauktu</option>';
+        productSelector.innerHTML = '<option value="">Izvēlies produktu</option>';
 
-        shelves.forEach(shelf => {
+        products.forEach(product => {
             const option = document.createElement("option");
-            option.value = shelf.id;
-            option.textContent = shelf.id;
-            
-            shelfSelector.append(option);
+            option.value = product.id;
+            option.textContent = product.product_name;
+
+            productSelector.append(option);
         });
     }
 }
@@ -95,20 +86,18 @@ async function ToggleNewShelfForm() {
 async function AddNewShelf() {
     const shelf_id = document.getElementById("new-shelf-id").value;
     const product_id = document.getElementById("new-product-id").value;
+    const count = document.getElementById("shelf-stock").value;
 
     const req = await fetch("../api/shelves/add_shelf.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shelf_id: shelf_id, product_id: product_id })
+        body: JSON.stringify({ shelf_id: shelf_id, product_id: product_id, stock: count})
     });
 
     const res = await req.json();
 
     if (res.error) {
         DisplayError(res.error);
-    }
-    else if (res.success) {
-        DisplaySuccess(res.success);
     }
     ToggleNewShelfForm();
     UpdateShelvesTable();
