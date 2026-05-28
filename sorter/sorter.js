@@ -1,48 +1,47 @@
-const shelves_table_body = document.querySelector("tbody#shelves");
+const toast_container = document.getElementById("toast-container");
+const overlay_container = document.getElementById("overlay-container");
 
-async function GetAllShelves() {
-    const req = await fetch("../api/get_all_shelves.php");
-    const res = await req.json();
+async function DisplayError(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = msg;
 
-    return res;
+    toast_container.appendChild(toast);
+
+    await new Promise(r => setTimeout(r, 5000));
+
+    toast.remove();
 }
 
-async function DeleteShelve(id) {
-    const req = await fetch("../api/delete_shelve.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shelve_id: id })
-    });
+async function DisplaySuccess(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast good";
+    toast.innerHTML = msg;
 
-    const res = await req.json();
-    console.log(res);
-
-    UpdateTable();
-}
-
-function InsertShelvesTableRow(id, name, stock) {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-    <td>${id}</td>
-    <td>${name}</td>
-    <td>${stock}</td>
-    <td>
-        <button onclick="EditShelve(${id})">Edit</button>
-        <button onclick="DeleteShelve(${id})">Delete</button>
-    </td>
-    `
-
-    shelves_table_body.append(row);
-}
-
-async function UpdateTable() {
-    shelves_table_body.innerHTML = "";
-    const shelves = await GetAllShelves();
+    toast_container.appendChild(toast);
     
-    shelves.forEach(shelve => {
-        InsertShelvesTableRow(shelve.id, shelve.product_id, shelve.stock);
-    });
+    await new Promise(r => setTimeout(r, 5000));
+
+    toast.remove();
 }
 
-UpdateTable();
+async function ToggleTable(buttonObject) {
+    document.querySelectorAll(".table-select-button").forEach(button => {
+        button.classList.remove("active");
+    });
+    
+    document.querySelectorAll(".table-container").forEach(container => {
+        container.classList.remove("active");
+    });
+
+    const tableContainerId = buttonObject.dataset.tableId;
+    document.getElementById(tableContainerId).classList.add("active");
+
+    buttonObject.classList.add("active");
+    
+    switch (tableContainerId) {
+        case "shelves-table-container":
+            await UpdateShelvesTable();
+            break;
+    }
+}

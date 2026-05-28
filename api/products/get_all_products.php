@@ -10,7 +10,7 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
-if ($_SESSION["user_role"] != 3 && $_SESSION["user_role"] != 2) {
+if ($_SESSION["user_role"] == 0) {
     http_response_code(403);
     echo json_encode(["error" => "Insufficient permissions"]);
     exit;
