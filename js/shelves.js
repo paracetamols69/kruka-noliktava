@@ -2,6 +2,9 @@ const shelves_table_body = document.querySelector("tbody#shelves");
 const new_shelf_form = document.getElementById("new-shelf-form");
 const productSelector = document.getElementById("shelf-product-select");
 
+const edit_shelf_form = document.getElementById("edit-shelf-form");
+const editProductSelector = document.getElementById("edit-shelf-product-select");
+
 async function DeleteShelf(id) {
     const req = await fetch("../api/shelves/delete_shelf.php", {
         method: "POST",
@@ -36,10 +39,10 @@ function InsertShelvesTableRow(id, product_id, stock) {
     <td>${product_id}</td>
     <td>${stock}</td>
     <td>
-        <button onclick="EditShelf(${id})">Edit</button>
+        <button onclick="ToggleEditShelfForm(${id}, ${product_id}, ${stock})">Edit</button>
         <button onclick="DeleteShelf(${id})">Delete</button>
     </td>
-    `
+    `;
 
     shelves_table_body.append(row);
 }
@@ -102,4 +105,60 @@ async function AddNewShelf() {
     ToggleNewShelfForm();
     UpdateShelvesTable();
 }
+
+
+async function ToggleEditShelfForm(id = null, product_id = null, stock = null) {
+    if (edit_shelf_form.classList.contains("active")) {
+        overlay_container.classList.remove("active");
+        edit_shelf_form.classList.remove("active");
+    } else {
+        document.getElementById("edit-shelf-id").value = id;
+        document.getElementById("edit-shelf-stock").value = stock;
+
+        const req = await fetch("../../api/products/get_all_products.php");
+        const products = await req.json();
+        
+        if (products.error) {
+            DisplayError(products.error);
+        }
+
+        editProductSelector.innerHTML = '<option value="">Izvēlies produktu</option>';
+
+        products.forEach(product => {
+            const option = document.createElement("option");
+            option.value = product.id;
+            option.textContent = product.product_name;
+            
+            if (product.id == product_id) {
+                option.selected = true;
+            }
+            editProductSelector.append(option);
+        });
+
+        overlay_container.classList.add("active");
+        edit_shelf_form.classList.add("active");
+    }
+}
+
+async function SaveShelfData() {
+    const id = document.getElementById("edit-shelf-id").value;
+    const product_id = editProductSelector.value;
+    const stock = document.getElementById("edit-shelf-stock").value;
+
+    const req = await fetch("../api/shelves/update_shelf.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ shelf_id: id, product_id: product_id, stock: stock })
+    });
+
+    const res = await req.json();
+    if (res.error) {
+        if (typeof DisplayError === "function") DisplayError(res.error);
+        else alert(res.error);
+    } else {
+        ToggleEditShelfForm();
+        UpdateShelvesTable();
+    }
+}
+
 UpdateShelvesTable();
