@@ -48,7 +48,7 @@ function InsertOrdersTableRow(id, product_id, count, status, created_at) {
     <td>${status}</td>
     <td>${created_at}</td>
     <td>
-        <button class="editBtn" onclick="ToggleEditOrderForm(${id})">Edit</button>
+        <button class="editBtn" onclick="ToggleEditOrderForm(${id}, ${product_id}, ${status})">Edit</button>
         <button class="deleteBtn" onclick="DeleteOrder(${id})">Delete</button>
     </td>
     `
@@ -113,7 +113,7 @@ async function SaveOrderData() {
     UpdateOrdersTable();
 }
 
-async function ToggleEditOrderForm(id) {
+async function ToggleEditOrderForm(id = null, product_id = null, status = null) {
     overlay_container.classList.toggle("active");
     edit_order_form.classList.toggle("active");
 
@@ -147,6 +147,9 @@ async function ToggleEditOrderForm(id) {
 
             orderEditProductSelector.append(option);
         });
+
+        document.getElementById("edit-order-product-select").value = product_id;
+        document.getElementById("edit-order-status-select").value = status;
     }
 }
 

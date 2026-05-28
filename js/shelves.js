@@ -13,8 +13,12 @@ async function DeleteShelf(id) {
     });
 
     const res = await req.json();
+
     if (res.error) {
         DisplayError(res.error);
+    }
+    if (res.success) {
+        DisplaySuccess(res.success);
     }
     
     UpdateShelvesTable();
