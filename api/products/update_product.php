@@ -27,8 +27,14 @@ if (!isset($data["product_id"]) || !isset($data["product_name"]) || !isset($data
 }
 
 $product_id = intval($data["product_id"]);
-$product_name = $data["product_name"];
+$product_name = trim($data["product_name"]);
 $count = intval($data["count"]);
+
+if (empty($product_name)) {
+    http_response_code(400);
+    echo json_encode(["error" => "Produkta nosaukums nevar būt tukšs!"]);
+    exit;
+}
 
 if ($count < 0) {
     http_response_code(400);
