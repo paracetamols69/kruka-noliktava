@@ -17,6 +17,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
     <script src="../js/products.js" defer></script>
     <script src="../js/orders.js" defer></script>
     <script src="../js/shelves.js" defer></script>
+    <script src="../js/dashboard.js" defer></script>
     <script src="admin.js" defer></script>
     <title>Admin panel</title>
 </head>
@@ -32,6 +33,7 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
         <div class="table-select-button" id="products-button" data-table-id="products-table-container" onclick="ToggleTable(this)">Products</div> 
         <div class="table-select-button" id="orders-button" data-table-id="orders-table-container" onclick="ToggleTable(this)">Orders</div> 
         <div class="table-select-button" id="shelves-button" data-table-id="shelves-table-container" onclick="ToggleTable(this)">Shelves</div> 
+        <div class="table-select-button" id="dashboard-button" data-table-id="dashboard-container" onclick="ToggleTable(this)">Reports</div>
         <a id="logoutButton" href="/logout.php">Logout</a>
     </div>
 
@@ -105,6 +107,57 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["user_role"] != 3) {
 
             <button id="new-product-btn" onclick="ToggleNewShelfForm()">New</button>
         </div>
+
+
+        <div id="dashboard-container" class="table-container">
+            <h2>Warehouse Reports & Analytics</h2>
+            
+            <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;" />
+
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #ff5252;">Shelf Alerts</h3>
+                
+                <p style="margin-bottom: 5px;"><b>Empty Shelves (Stock = 0):</b></p>
+                <ul id="dash-empty-shelves" style="padding-left: 20px; margin-top: 0;"></ul>
+                
+                <p style="margin-bottom: 5px;"><b>Low Stock Shelves (Stock ≤ 3):</b></p>
+                <ul id="dash-low-shelves" style="padding-left: 20px; margin-top: 0;"></ul>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #ffcc00;">Product Inventory Alerts</h3>
+                
+                <p style="margin-bottom: 5px;"><b>Out of Stock Products:</b></p>
+                <ul id="dash-out-products" style="padding-left: 20px; margin-top: 0;"></ul>
+                
+                <p style="margin-bottom: 5px;"><b>Low Stock Products (Stock ≤ 10):</b></p>
+                <ul id="dash-low-products" style="padding-left: 20px; margin-top: 0;"></ul>
+            </div>
+
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: #55efc4;">Top 5 Most Ordered Products</h3>
+                <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr style="background: #2d3436;">
+                            <th style="padding: 10px; text-align: left;">Product Name</th>
+                            <th style="padding: 10px; text-align: left;">Total Quantity Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dash-top-products">
+                        </tbody>
+                </table>
+            </div>
+
+            <div style="background: #1e1e1e; padding: 15px; border-radius: 4px; border: 1px solid #333;">
+                <h3 style="margin-top: 0;">General System Statistics</h3>
+                <ul style="padding-left: 20px; list-style-type: square; margin-bottom: 0;">
+                    <li>Total Products in System: <span id="stat-products" style="font-weight: bold;">0</span></li>
+                    <li>Total Registered Shelves: <span id="stat-shelves" style="font-weight: bold;">0</span></li>
+                    <li>Total Processed Orders: <span id="stat-orders" style="font-weight: bold;">0</span></li>
+                </ul>
+            </div>
+        </div>
+
 
 
         <div id="overlay-container">
