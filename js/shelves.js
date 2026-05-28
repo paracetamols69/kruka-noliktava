@@ -102,6 +102,9 @@ async function AddNewShelf() {
     if (res.error) {
         DisplayError(res.error);
     }
+    if (res.success) {
+        DisplaySuccess(res.success);
+    }
     ToggleNewShelfForm();
     UpdateShelvesTable();
 }

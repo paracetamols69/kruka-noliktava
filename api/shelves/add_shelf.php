@@ -65,7 +65,7 @@ if ($stmt->execute()) {
     $updateStmt->bind_param("ii", $stock, $product_id);
     $updateStmt->execute();
 
-    echo json_encode(["success" => "vajadzetu but ok"]);
+    echo json_encode(["success" => "Shelf added"]);
 } else {
     http_response_code(500);
     echo json_encode(["error" => "Database error: failed to add shelf"]);
