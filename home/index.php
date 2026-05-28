@@ -21,3 +21,7 @@ if ($_SESSION["user_role"] == 3) {
     exit;
 }
 ?>
+
+<h1>Tev vēl nav piešķirts role.</h1>
+
+<h3>Sazinies ar Kruku</h3>
